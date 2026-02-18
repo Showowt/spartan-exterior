@@ -41,12 +41,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Spartan Exterior Services",
     url: "https://spartanexteriorservices.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Spartan Exterior Services - Las Vegas Window Cleaning",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Spartan Exterior Services LLC | Las Vegas Window Cleaning",
     description:
       "Clear Views, Cleaner Living. Professional exterior cleaning services.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
