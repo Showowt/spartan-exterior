@@ -259,7 +259,7 @@ function ServiceCard({ service }: { service: Service }) {
 
   return (
     <article
-      className="card-spartan card-animated-border p-8 group relative overflow-hidden"
+      className="card-spartan card-animated-border p-4 sm:p-6 md:p-8 group relative overflow-hidden"
       style={tiltStyle}
       {...handlers}
     >
@@ -436,8 +436,11 @@ export default function Home() {
         >
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#050505] to-[#0a0a0a]">
-            {/* Spartan Shield Background Pattern - Parallax Layers */}
-            <div className="absolute inset-0 opacity-5" aria-hidden="true">
+            {/* Spartan Shield Background Pattern - Parallax Layers (hidden on mobile for performance) */}
+            <div
+              className="absolute inset-0 opacity-5 hidden md:block"
+              aria-hidden="true"
+            >
               <div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border-[40px] border-spartan-gold/30 rounded-full transition-transform duration-100"
                 style={{
@@ -472,7 +475,7 @@ export default function Home() {
             </div>
 
             {/* Main Headline with Text Reveal */}
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6">
               <TextReveal
                 text="CLEAR VIEWS"
                 as="span"
@@ -490,7 +493,7 @@ export default function Home() {
             </h1>
 
             {/* Subheadline */}
-            <p className="text-xl sm:text-2xl text-spartan-cream/70 max-w-2xl mx-auto mb-10 animate-fade-in-up stagger-2">
+            <p className="text-base sm:text-xl md:text-2xl text-spartan-cream/70 max-w-2xl mx-auto mb-8 sm:mb-10 px-2 animate-fade-in-up stagger-2">
               Dedicated to Detail. Driven by Quality.
               <br />
               <span className="text-spartan-gold">
@@ -500,32 +503,32 @@ export default function Home() {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up stagger-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0 animate-fade-in-up stagger-3">
               <a
                 href="tel:7025093854"
-                className="btn-spartan px-10 py-4 text-lg w-full sm:w-auto min-h-[56px] flex items-center justify-center"
+                className="btn-spartan px-6 sm:px-10 py-4 text-base sm:text-lg w-full sm:w-auto min-h-[56px] flex items-center justify-center"
               >
                 GET FREE ESTIMATE
               </a>
               <a
                 href="#services"
-                className="btn-emerald px-10 py-4 text-lg w-full sm:w-auto min-h-[56px] flex items-center justify-center"
+                className="btn-emerald px-6 sm:px-10 py-4 text-base sm:text-lg w-full sm:w-auto min-h-[56px] flex items-center justify-center"
               >
                 VIEW SERVICES
               </a>
             </div>
 
             {/* Trust Signals */}
-            <div className="flex flex-wrap items-center justify-center gap-6 mt-12 animate-fade-in-up stagger-4">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mt-8 sm:mt-12 px-4 animate-fade-in-up stagger-4">
               {trustSignals.map((signal) => (
                 <div
                   key={signal.label}
-                  className="flex items-center gap-2 text-spartan-cream/60"
+                  className="flex items-center gap-1.5 sm:gap-2 text-spartan-cream/60"
                 >
-                  <span className="text-lg" aria-hidden="true">
+                  <span className="text-base sm:text-lg" aria-hidden="true">
                     {signal.icon}
                   </span>
-                  <span className="text-sm">{signal.label}</span>
+                  <span className="text-xs sm:text-sm">{signal.label}</span>
                 </div>
               ))}
             </div>
@@ -670,35 +673,35 @@ export default function Home() {
                   : "opacity-0 translate-y-8"
               }`}
             >
-              <div className="text-center p-6 border border-spartan-gold/20">
-                <div className="font-display text-4xl md:text-5xl font-bold text-spartan-gold">
+              <div className="text-center p-3 sm:p-4 md:p-6 border border-spartan-gold/20">
+                <div className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-spartan-gold">
                   <AnimatedCounter end={500} suffix="+" />
                 </div>
-                <p className="text-spartan-cream/60 text-sm mt-2">
+                <p className="text-spartan-cream/60 text-xs sm:text-sm mt-1 sm:mt-2">
                   Windows Cleaned
                 </p>
               </div>
-              <div className="text-center p-6 border border-spartan-gold/20">
-                <div className="font-display text-4xl md:text-5xl font-bold text-spartan-gold">
+              <div className="text-center p-3 sm:p-4 md:p-6 border border-spartan-gold/20">
+                <div className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-spartan-gold">
                   <AnimatedCounter end={100} suffix="%" />
                 </div>
-                <p className="text-spartan-cream/60 text-sm mt-2">
+                <p className="text-spartan-cream/60 text-xs sm:text-sm mt-1 sm:mt-2">
                   Satisfaction
                 </p>
               </div>
-              <div className="text-center p-6 border border-spartan-gold/20">
-                <div className="font-display text-4xl md:text-5xl font-bold text-spartan-gold">
+              <div className="text-center p-3 sm:p-4 md:p-6 border border-spartan-gold/20">
+                <div className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-spartan-gold">
                   <AnimatedCounter end={5} />
                 </div>
-                <p className="text-spartan-cream/60 text-sm mt-2">
+                <p className="text-spartan-cream/60 text-xs sm:text-sm mt-1 sm:mt-2">
                   Star Reviews
                 </p>
               </div>
-              <div className="text-center p-6 border border-spartan-gold/20">
-                <div className="font-display text-4xl md:text-5xl font-bold text-spartan-gold">
+              <div className="text-center p-3 sm:p-4 md:p-6 border border-spartan-gold/20">
+                <div className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-spartan-gold">
                   <AnimatedCounter end={50} suffix="+" />
                 </div>
-                <p className="text-spartan-cream/60 text-sm mt-2">
+                <p className="text-spartan-cream/60 text-xs sm:text-sm mt-1 sm:mt-2">
                   Happy Clients
                 </p>
               </div>
@@ -896,10 +899,10 @@ export default function Home() {
             >
               Get a free, no-obligation estimate from our Spartan team.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0">
               <a
                 href="tel:7025093854"
-                className="btn-spartan px-12 py-5 text-xl w-full sm:w-auto min-h-[64px] flex items-center justify-center gap-3"
+                className="btn-spartan px-6 sm:px-10 md:px-12 py-4 sm:py-5 text-base sm:text-lg md:text-xl w-full sm:w-auto min-h-[56px] sm:min-h-[64px] flex items-center justify-center gap-2 sm:gap-3"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -907,7 +910,7 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
                   aria-hidden="true"
                 >
                   <path
@@ -920,7 +923,7 @@ export default function Home() {
               </a>
               <a
                 href="mailto:spartanexteriorservicellc@gmail.com"
-                className="btn-emerald px-12 py-5 text-xl w-full sm:w-auto min-h-[64px] flex items-center justify-center"
+                className="btn-emerald px-6 sm:px-10 md:px-12 py-4 sm:py-5 text-base sm:text-lg md:text-xl w-full sm:w-auto min-h-[56px] sm:min-h-[64px] flex items-center justify-center"
               >
                 EMAIL US
               </a>

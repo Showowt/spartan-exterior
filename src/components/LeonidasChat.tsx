@@ -928,7 +928,7 @@ ${generateEstimateSummary(estimate)}`,
         {/* Main button with Spartan logo */}
         <button
           onClick={toggleChat}
-          className="relative w-20 h-20 flex items-center justify-center bg-gradient-to-br from-spartan-gold via-spartan-gold to-spartan-gold-dark border-2 border-spartan-gold-light hover:scale-110 transition-transform duration-300 group"
+          className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-gradient-to-br from-spartan-gold via-spartan-gold to-spartan-gold-dark border-2 border-spartan-gold-light hover:scale-110 transition-transform duration-300 group"
           aria-label="Chat with Leonidas for a free estimate"
           aria-expanded={isOpen}
           style={{
@@ -937,13 +937,13 @@ ${generateEstimateSummary(estimate)}`,
           }}
         >
           {/* Spartan Logo */}
-          <div className="relative w-14 h-14">
+          <div className="relative w-10 h-10 sm:w-14 sm:h-14">
             <Image
               src="/spartan-logo.png"
               alt="Chat with Leonidas"
               fill
               className="object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
-              sizes="56px"
+              sizes="(max-width: 640px) 40px, 56px"
             />
           </div>
 

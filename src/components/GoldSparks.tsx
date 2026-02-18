@@ -42,6 +42,10 @@ export default function GoldSparks() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
+    // Reduce particle count on mobile for performance
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 25 : 60;
+
     const colors = [
       "#d4af37", // Gold
       "#f4d03f", // Light gold
@@ -69,8 +73,8 @@ export default function GoldSparks() {
       };
     };
 
-    // Initialize particles
-    for (let i = 0; i < 60; i++) {
+    // Initialize particles (fewer on mobile)
+    for (let i = 0; i < particleCount; i++) {
       particlesRef.current.push(createParticle());
     }
 
