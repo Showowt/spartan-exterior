@@ -1,0 +1,726 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   SPARTAN EXTERIOR SERVICES — CINEMATIC DESIGN SYSTEM
+   Colors extracted from logo: Gold, Emerald Green, Black
+═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Spartan Brand Colors */
+  --spartan-black: #0a0a0a;
+  --spartan-gold: #d4af37;
+  --spartan-gold-light: #f4d03f;
+  --spartan-gold-dark: #b8960c;
+  --spartan-emerald: #10b981;
+  --spartan-emerald-dark: #059669;
+  --spartan-cream: #f5f5dc;
+  --spartan-bronze: #cd7f32;
+
+  /* UI Colors */
+  --background: #050505;
+  --foreground: #f5f5dc;
+  --muted: #1a1a1a;
+  --border: #2a2a2a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-spartan-black: #0a0a0a;
+  --color-spartan-gold: #d4af37;
+  --color-spartan-gold-light: #f4d03f;
+  --color-spartan-emerald: #10b981;
+  --color-spartan-emerald-dark: #059669;
+  --color-spartan-cream: #f5f5dc;
+  --color-spartan-bronze: #cd7f32;
+  --font-display: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--spartan-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--spartan-gold);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--spartan-gold-light);
+}
+
+/* Selection highlight */
+::selection {
+  background: var(--spartan-gold);
+  color: var(--spartan-black);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Cinematic text gradient */
+.text-spartan-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--spartan-gold-light) 0%,
+    var(--spartan-gold) 50%,
+    var(--spartan-bronze) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold glow effect */
+.glow-gold {
+  box-shadow:
+    0 0 20px rgba(212, 175, 55, 0.3),
+    0 0 40px rgba(212, 175, 55, 0.2),
+    0 0 60px rgba(212, 175, 55, 0.1);
+}
+
+.glow-gold-text {
+  text-shadow:
+    0 0 10px rgba(212, 175, 55, 0.5),
+    0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Emerald glow */
+.glow-emerald {
+  box-shadow:
+    0 0 20px rgba(16, 185, 129, 0.3),
+    0 0 40px rgba(16, 185, 129, 0.2);
+}
+
+/* Shield border */
+.shield-border {
+  border: 2px solid var(--spartan-gold);
+  position: relative;
+}
+
+.shield-border::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  pointer-events: none;
+}
+
+/* Spartan button styles */
+.btn-spartan {
+  background: linear-gradient(
+    135deg,
+    var(--spartan-gold) 0%,
+    var(--spartan-gold-dark) 100%
+  );
+  color: var(--spartan-black);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-spartan::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-spartan:hover::before {
+  left: 100%;
+}
+
+.btn-spartan:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
+/* Emerald secondary button */
+.btn-emerald {
+  background: transparent;
+  border: 2px solid var(--spartan-emerald);
+  color: var(--spartan-emerald);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.btn-emerald:hover {
+  background: var(--spartan-emerald);
+  color: var(--spartan-black);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY — Focus States & Reduced Motion
+═══════════════════════════════════════════════════════════════ */
+
+/* Focus-visible styles for keyboard navigation */
+.btn-spartan:focus-visible,
+.btn-emerald:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--spartan-gold);
+  outline-offset: 3px;
+}
+
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 4px;
+  z-index: 100;
+  padding: 1rem;
+  background: var(--spartan-gold);
+  color: var(--spartan-black);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 4px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .btn-spartan,
+  .btn-emerald {
+    border: 2px solid ButtonText;
+  }
+
+  .input-spartan:focus {
+    outline: 2px solid ButtonText;
+  }
+
+  .card-spartan {
+    border: 1px solid ButtonText;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-fade-in-up,
+  .animate-fade-in-scale,
+  .animate-shimmer,
+  .animate-pulse-gold,
+  .animate-float,
+  .typing-dot {
+    animation: none !important;
+  }
+
+  .btn-spartan::before {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════════════ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse-gold {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.6s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(212, 175, 55, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Staggered animations */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+
+/* Card styles */
+.card-spartan {
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 0.8) 0%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.card-spartan:hover {
+  border-color: var(--spartan-gold);
+  transform: translateY(-5px);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(212, 175, 55, 0.1);
+}
+
+/* Divider line */
+.spartan-divider {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--spartan-gold) 50%,
+    transparent 100%
+  );
+}
+
+/* Hero video overlay */
+.hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 5, 0.7) 0%,
+    rgba(5, 5, 5, 0.4) 50%,
+    rgba(5, 5, 5, 0.95) 100%
+  );
+}
+
+/* Chat bubble styles */
+.chat-bubble-user {
+  background: linear-gradient(
+    135deg,
+    var(--spartan-emerald-dark) 0%,
+    var(--spartan-emerald) 100%
+  );
+  color: white;
+}
+
+.chat-bubble-bot {
+  background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--spartan-cream);
+}
+
+/* Input field spartan style */
+.input-spartan {
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--spartan-cream);
+  transition: all 0.3s ease;
+}
+
+.input-spartan:focus {
+  border-color: var(--spartan-gold);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+  outline: 2px solid transparent;
+}
+
+.input-spartan::placeholder {
+  color: rgba(245, 245, 220, 0.5);
+}
+
+/* Typing indicator */
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-5px);
+  }
+}
+
+.typing-dot {
+  animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CINEMATIC EXPERIENCE ANIMATIONS
+═══════════════════════════════════════════════════════════════ */
+
+/* Shield reveal - circular expansion */
+@keyframes shieldReveal {
+  from {
+    clip-path: circle(0% at center);
+    opacity: 0;
+  }
+  to {
+    clip-path: circle(100% at center);
+    opacity: 1;
+  }
+}
+
+/* Spear thrust - horizontal entrance with overshoot */
+@keyframes spearThrust {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  70% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Text character reveal */
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) rotateX(-45deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+/* Pin drop bounce */
+@keyframes pinDrop {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Battle cry scale up */
+@keyframes battleCry {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Greek columns slide */
+@keyframes greekColumnsLeft {
+  from {
+    transform: translateX(-100%) rotateY(45deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes greekColumnsRight {
+  from {
+    transform: translateX(100%) rotateY(-45deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+/* Spear scroll bounce */
+@keyframes spearBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* Border rotation for card hover */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes borderRotate {
+  from {
+    --border-angle: 0deg;
+  }
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+/* Animation utility classes */
+.animate-shield-reveal {
+  animation: shieldReveal 0.8s ease-out forwards;
+}
+
+.animate-spear-thrust {
+  animation: spearThrust 0.6s ease-out forwards;
+}
+
+.animate-text-reveal {
+  animation: textReveal 0.5s ease-out forwards;
+}
+
+.animate-pin-drop {
+  animation: pinDrop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-battle-cry {
+  animation: battleCry 0.8s ease-out forwards;
+}
+
+.animate-greek-columns-left {
+  animation: greekColumnsLeft 0.7s ease-out forwards;
+}
+
+.animate-greek-columns-right {
+  animation: greekColumnsRight 0.7s ease-out forwards;
+}
+
+.animate-spear-bounce {
+  animation: spearBounce 1.5s ease-in-out infinite;
+}
+
+/* Scroll reveal base states */
+.scroll-hidden {
+  opacity: 0;
+}
+
+.scroll-revealed {
+  opacity: 1;
+}
+
+/* 3D Transform utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Animated border card */
+.card-animated-border {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 0.9) 0%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.card-animated-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 60%,
+    var(--spartan-gold) 80%,
+    var(--spartan-gold-light) 90%,
+    var(--spartan-gold) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-animated-border:hover::before {
+  opacity: 1;
+  animation: borderRotate 2s linear infinite;
+}
+
+/* Glow follow effect container */
+.glow-follow {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-follow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-follow:hover::after {
+  opacity: 1;
+}
+
+/* Update reduced motion for new animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shield-reveal,
+  .animate-spear-thrust,
+  .animate-text-reveal,
+  .animate-pin-drop,
+  .animate-battle-cry,
+  .animate-greek-columns-left,
+  .animate-greek-columns-right,
+  .animate-spear-bounce {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .card-animated-border::before {
+    display: none;
+  }
+}
