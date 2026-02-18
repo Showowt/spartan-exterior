@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://spartanexteriorservices.com"),
+  metadataBase: new URL("https://spartan-exterior.vercel.app"),
   title:
     "Spartan Exterior Services LLC | Las Vegas Window Cleaning & Exterior Specialists",
   description:
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "window cleaning Las Vegas, exterior cleaning Nevada, solar panel cleaning Henderson, pressure washing Boulder City, soft wash Las Vegas, permanent lighting installation",
   authors: [{ name: "Spartan Exterior Services LLC" }],
   alternates: {
-    canonical: "https://spartanexteriorservices.com",
+    canonical: "https://spartan-exterior.vercel.app",
   },
   openGraph: {
     title: "Spartan Exterior Services LLC | Las Vegas Window Cleaning Experts",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Spartan Exterior Services",
-    url: "https://spartanexteriorservices.com",
+    url: "https://spartan-exterior.vercel.app",
     images: [
       {
         url: "/og-image.jpg",
