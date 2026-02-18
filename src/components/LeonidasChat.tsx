@@ -863,33 +863,101 @@ ${generateEstimateSummary(estimate)}`,
     ));
   };
 
+  // Show attention-grabbing tooltip after delay
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipDismissed, setTooltipDismissed] = useState(false);
+
+  useEffect(() => {
+    if (isOpen || tooltipDismissed) return;
+
+    const timer = setTimeout(() => {
+      setShowTooltip(true);
+    }, 4000); // Show after 4 seconds
+
+    return () => clearTimeout(timer);
+  }, [isOpen, tooltipDismissed]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setShowTooltip(false);
+      setTooltipDismissed(true);
+    }
+  }, [isOpen]);
+
   return (
     <>
-      {/* Chat Toggle Button */}
-      <button
-        onClick={toggleChat}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 flex items-center justify-center btn-spartan transition-all duration-300 ${
-          isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
+      {/* LEONIDAS Chat Toggle - Dramatic Spartan Button */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
+          isOpen
+            ? "scale-0 opacity-0 pointer-events-none"
+            : "scale-100 opacity-100"
         }`}
-        aria-label="Open chat with Leonidas estimator"
-        aria-expanded={isOpen}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="w-7 h-7"
-          aria-hidden="true"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"
+        {/* Attention-grabbing tooltip */}
+        {showTooltip && !isOpen && (
+          <div className="absolute bottom-full right-0 mb-4 animate-fade-in-up">
+            <div className="relative bg-spartan-gold text-spartan-black px-4 py-3 font-display font-semibold text-sm tracking-wide whitespace-nowrap">
+              <span className="mr-2">⚔️</span>
+              Need a FREE estimate, warrior?
+              <button
+                onClick={() => setTooltipDismissed(true)}
+                className="ml-3 text-spartan-black/60 hover:text-spartan-black"
+                aria-label="Dismiss"
+              >
+                ✕
+              </button>
+              {/* Arrow pointing down */}
+              <div className="absolute top-full right-8 w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-spartan-gold" />
+            </div>
+          </div>
+        )}
+
+        {/* Pulsing glow rings */}
+        <div className="absolute inset-0 -m-2">
+          <div
+            className="absolute inset-0 bg-spartan-gold/20 rounded-full animate-ping"
+            style={{ animationDuration: "2s" }}
           />
-        </svg>
-      </button>
+          <div
+            className="absolute inset-0 bg-spartan-gold/10 rounded-full animate-ping"
+            style={{ animationDuration: "2s", animationDelay: "0.5s" }}
+          />
+        </div>
+
+        {/* Main button with Spartan logo */}
+        <button
+          onClick={toggleChat}
+          className="relative w-20 h-20 flex items-center justify-center bg-gradient-to-br from-spartan-gold via-spartan-gold to-spartan-gold-dark border-2 border-spartan-gold-light hover:scale-110 transition-transform duration-300 group"
+          aria-label="Chat with Leonidas for a free estimate"
+          aria-expanded={isOpen}
+          style={{
+            boxShadow:
+              "0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3), inset 0 2px 0 rgba(255,255,255,0.2)",
+          }}
+        >
+          {/* Spartan Logo */}
+          <div className="relative w-14 h-14">
+            <Image
+              src="/spartan-logo.png"
+              alt="Chat with Leonidas"
+              fill
+              className="object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
+              sizes="56px"
+            />
+          </div>
+
+          {/* Online indicator */}
+          <span className="absolute -top-1 -right-1 w-5 h-5 bg-spartan-emerald rounded-full border-2 border-spartan-gold flex items-center justify-center">
+            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+          </span>
+
+          {/* Chat badge */}
+          <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-spartan-black text-spartan-gold text-[10px] font-display font-bold px-2 py-0.5 border border-spartan-gold tracking-wider">
+            CHAT
+          </span>
+        </button>
+      </div>
 
       {/* Chat Window */}
       <div
@@ -960,10 +1028,22 @@ ${generateEstimateSummary(estimate)}`,
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+              className={`flex gap-2 ${message.role === "user" ? "justify-end" : "justify-start"}`}
             >
+              {/* Spartan Avatar for bot messages */}
+              {message.role === "bot" && (
+                <div className="flex-shrink-0 w-8 h-8 relative">
+                  <Image
+                    src="/spartan-logo.png"
+                    alt=""
+                    fill
+                    className="object-contain"
+                    sizes="32px"
+                  />
+                </div>
+              )}
               <div
-                className={`max-w-[85%] px-4 py-3 text-sm leading-relaxed ${
+                className={`max-w-[80%] px-4 py-3 text-sm leading-relaxed ${
                   message.role === "user"
                     ? "chat-bubble-user"
                     : "chat-bubble-bot"
@@ -976,7 +1056,16 @@ ${generateEstimateSummary(estimate)}`,
 
           {/* Typing indicator */}
           {isTyping && (
-            <div className="flex justify-start">
+            <div className="flex gap-2 justify-start">
+              <div className="flex-shrink-0 w-8 h-8 relative">
+                <Image
+                  src="/spartan-logo.png"
+                  alt=""
+                  fill
+                  className="object-contain animate-pulse"
+                  sizes="32px"
+                />
+              </div>
               <div
                 className="chat-bubble-bot px-4 py-3 flex items-center gap-1"
                 aria-live="polite"
@@ -991,13 +1080,22 @@ ${generateEstimateSummary(estimate)}`,
 
           {/* Submitting indicator */}
           {isSubmitting && (
-            <div className="flex justify-start">
+            <div className="flex gap-2 justify-start">
+              <div className="flex-shrink-0 w-8 h-8 relative">
+                <Image
+                  src="/spartan-logo.png"
+                  alt=""
+                  fill
+                  className="object-contain"
+                  sizes="32px"
+                />
+              </div>
               <div
                 className="chat-bubble-bot px-4 py-3 text-sm"
                 aria-live="polite"
               >
                 <span className="text-spartan-gold animate-pulse">
-                  Submitting your request...
+                  ⚔️ Preparing your estimate...
                 </span>
               </div>
             </div>
