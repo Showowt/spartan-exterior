@@ -981,8 +981,8 @@ export default function Home() {
                       spartanexteriorservicellc@gmail.com
                     </a>
                   </p>
-                  <p>Mon–Fri: 9AM–5PM</p>
-                  <p>Sat–Sun: Closed</p>
+                  <p>Mon–Sat: 9AM–5PM</p>
+                  <p>Sun: Closed</p>
                 </address>
               </div>
 

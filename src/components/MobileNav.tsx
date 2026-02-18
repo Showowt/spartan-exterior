@@ -143,7 +143,7 @@ export default function MobileNav() {
             (702) 509-3854
           </a>
           <p className="text-center text-xs text-spartan-cream/40 mt-3">
-            Mon–Fri: 9AM–5PM
+            Mon–Sat: 9AM–5PM
           </p>
         </div>
       </div>
